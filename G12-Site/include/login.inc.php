@@ -5,8 +5,14 @@
 // VULNERABILITIY: Missing CSRF token
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+session_start();
 if (isset($_POST["submit"])) {
+    // Verify CSRF token
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        header("Location: ../index.php");
+        exit();
+    }
+	
 // stores the users login and password into variables
     $userLogin = $_POST["userLogin"];
     $password = $_POST["psw"];
@@ -20,8 +26,6 @@ if (isset($_POST["submit"])) {
     }
 // logs the user in as they have inputted the correct informtation
     loginUser( $conn, $userLogin, $password );
-
-
 } else {
     header( "Location: ../index.php" );
     exit();

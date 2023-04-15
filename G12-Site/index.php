@@ -97,6 +97,7 @@ header('Content-Type: text/html; charset=utf-8');
           <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="rememberMe" />
             <label class="form-check-label" for="rememberMe">Remember me</label>
+			<input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>" />
           </div>
           <div class="modal-footer d-block">
             <p class="float-start">Not got an account? <a data-bs-toggle="modal" data-bs-target="#modalRegistrationForm" href="#">Sign Up</a></p>
