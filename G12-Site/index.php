@@ -18,6 +18,11 @@ if(isset($_SESSION['lastActivity'])){
     $_SESSION['lastActivity'] = time();
   }
 }
+
+// Generate CSRF token
+$csrf_token = bin2hex(random_bytes(32));
+$_SESSION['csrf_token'] = $csrf_token;
+
 header('Content-Type: text/html; charset=utf-8');
 ?>
 <!DOCTYPE html>
